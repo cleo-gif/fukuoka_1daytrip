@@ -1,0 +1,366 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>动森风·福冈一日游路书</title>
+<style>
+    /* 引入可爱圆润的字体 */
+    @import url('https://fonts.googleapis.com/css2?family=ZCOOL+KuaiLe&display=swap');
+
+    :root {
+        --bg-sky: #cbe6b6; /* 动森草地浅绿 */
+        --bg-ground: #fcf5e3; /* 米黄色羊皮纸 */
+        --wood-border: #8d6e63; /* 树干深棕色 */
+        --wood-light: #a1887f;
+        --text-main: #5d4037; /* 深咖啡色文字 */
+        --accent-orange: #ffb74d; /* 橘子色 */
+        --accent-blue: #81d4fa; /* 河水色 */
+        --accent-green: #81c784; /* 树叶绿 */
+        --bubble-shadow: 0 8px 0 rgba(141, 110, 99, 0.2);
+    }
+
+    body {
+        margin: 0;
+        padding: 40px 20px;
+        background-color: var(--bg-sky);
+        background-image: 
+            radial-gradient(circle at 10% 20%, rgba(255,255,255,0.4) 5%, transparent 5%),
+            radial-gradient(circle at 90% 80%, rgba(255,255,255,0.4) 8%, transparent 8%),
+            linear-gradient(180deg, var(--bg-sky) 0%, #a5d6a7 100%);
+        font-family: 'ZCOOL KuaiLe', 'Comic Sans MS', 'Microsoft YaHei', sans-serif;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        min-height: 100vh;
+        box-sizing: border-box;
+    }
+
+    /* 主卡片容器 */
+    .card-container {
+        background-color: var(--bg-ground);
+        width: 100%;
+        max-width: 600px;
+        border: 8px solid var(--wood-border);
+        border-radius: 30px;
+        box-shadow: 0 12px 0 #6d4c41, 0 20px 30px rgba(0,0,0,0.2);
+        padding: 30px;
+        position: relative;
+        box-sizing: border-box;
+    }
+
+    /* 顶部标题气泡 */
+    .title-bubble {
+        background-color: #fff;
+        border: 4px solid var(--wood-border);
+        border-radius: 20px;
+        padding: 15px 25px;
+        text-align: center;
+        position: relative;
+        margin-top: -55px;
+        margin-bottom: 25px;
+        box-shadow: var(--bubble-shadow);
+    }
+
+    .title-bubble h1 {
+        margin: 0;
+        color: var(--text-main);
+        font-size: 24px;
+        letter-spacing: 2px;
+    }
+
+    .title-bubble::after {
+        content: '';
+        position: absolute;
+        bottom: -16px;
+        left: 40px;
+        width: 0;
+        height: 0;
+        border-left: 15px solid transparent;
+        border-right: 15px solid transparent;
+        border-top: 20px solid var(--wood-border);
+    }
+
+    .title-bubble::before {
+        content: '';
+        position: absolute;
+        bottom: -10px;
+        left: 42px;
+        width: 0;
+        height: 0;
+        border-left: 13px solid transparent;
+        border-right: 13px solid transparent;
+        border-top: 17px solid #fff;
+        z-index: 1;
+    }
+
+    /* 玩家信息栏 */
+    .player-info {
+        display: flex;
+        justify-content: space-between;
+        background: #e8d8c3;
+        padding: 10px 20px;
+        border-radius: 15px;
+        border: 3px dashed var(--wood-border);
+        margin-bottom: 30px;
+        font-size: 14px;
+        color: var(--text-main);
+        font-weight: bold;
+    }
+
+    /* 时间线 */
+    .timeline {
+        position: relative;
+        padding-left: 20px;
+    }
+
+    .timeline::before {
+        content: '';
+        position: absolute;
+        left: 32px;
+        top: 10px;
+        bottom: 10px;
+        width: 4px;
+        background-color: #d7ccc8;
+        border-radius: 2px;
+        z-index: 0;
+    }
+
+    .timeline-item {
+        display: flex;
+        margin-bottom: 25px;
+        position: relative;
+        z-index: 1;
+    }
+
+    /* 时间标签 */
+    .time-label {
+        background-color: #fff;
+        border: 3px solid var(--wood-border);
+        border-radius: 15px;
+        padding: 6px 12px;
+        font-size: 14px;
+        font-weight: bold;
+        color: var(--text-main);
+        width: 70px;
+        text-align: center;
+        height: fit-content;
+        box-shadow: 0 4px 0 rgba(0,0,0,0.1);
+        flex-shrink: 0;
+    }
+
+    /* 内容气泡 */
+    .content-bubble {
+        background-color: #fff;
+        border: 3px solid var(--wood-border);
+        border-radius: 18px;
+        padding: 15px;
+        margin-left: 20px;
+        flex-grow: 1;
+        box-shadow: var(--bubble-shadow);
+        position: relative;
+    }
+
+    /* 气泡左边的小三角 */
+    .content-bubble::before {
+        content: '';
+        position: absolute;
+        left: -13px;
+        top: 15px;
+        width: 0;
+        height: 0;
+        border-top: 10px solid transparent;
+        border-bottom: 10px solid transparent;
+        border-right: 12px solid var(--wood-border);
+    }
+    .content-bubble::after {
+        content: '';
+        position: absolute;
+        left: -8px;
+        top: 17px;
+        width: 0;
+        height: 0;
+        border-top: 8px solid transparent;
+        border-bottom: 8px solid transparent;
+        border-right: 10px solid #fff;
+        z-index: 1;
+    }
+
+    .content-title {
+        font-size: 16px;
+        font-weight: bold;
+        color: var(--text-main);
+        margin-bottom: 6px;
+        display: flex;
+        align-items: center;
+        gap: 5px;
+    }
+
+    .content-desc {
+        font-size: 13px;
+        color: #795548;
+        line-height: 1.5;
+        margin: 0;
+    }
+
+    /* 重点提示框 */
+    .highlight-box {
+        background-color: #fff9c4;
+        border: 3px solid #fbc02d;
+        border-radius: 15px;
+        padding: 15px;
+        margin-top: 10px;
+        box-shadow: 0 4px 0 rgba(251, 192, 45, 0.3);
+    }
+
+    .highlight-title {
+        color: #f57f17;
+        font-weight: bold;
+        margin-bottom: 5px;
+        display: flex;
+        align-items: center;
+        gap: 5px;
+    }
+
+    /* 铃钱符号 */
+    .bells {
+        color: #ffb300;
+        font-family: 'Arial', sans-serif;
+        font-weight: bold;
+    }
+
+    /* 叶子装饰 */
+    .leaf {
+        font-size: 20px;
+        display: inline-block;
+        animation: float 3s ease-in-out infinite;
+    }
+
+    @keyframes float {
+        0% { transform: translateY(0px) rotate(0deg); }
+        50% { transform: translateY(-5px) rotate(10deg); }
+        100% { transform: translateY(0px) rotate(0deg); }
+    }
+
+    /* 底部印章 */
+    .stamp {
+        text-align: center;
+        margin-top: 20px;
+        color: #a1887f;
+        font-size: 12px;
+        border-top: 2px dashed #d7ccc8;
+        padding-top: 15px;
+    }
+
+</style>
+</head>
+<body>
+
+<div class="card-container">
+    
+    <!-- 标题气泡 -->
+    <div class="title-bubble">
+        <h1><span class="leaf">🍃</span> 福冈 10H 漫游指南 <span class="leaf">🍃</span></h1>
+    </div>
+
+    <!-- 玩家信息 -->
+    <div class="player-info">
+        <span>📍 目的地：福冈 (Fukuoka)</span>
+        <span>⏱️ 时长：10小时</span>
+    </div>
+
+    <!-- 时间线 -->
+    <div class="timeline">
+        
+        <!-- 行程1 -->
+        <div class="timeline-item">
+            <div class="time-label">10:30</div>
+            <div class="content-bubble">
+                <div class="content-title">🚉 中洲川端集合</div>
+                <p class="content-desc">先去博多运河城溜达一圈，或者在天神地下街吃点轻食。留着肚子给晚上的大餐！</p>
+            </div>
+        </div>
+
+        <!-- 行程2 -->
+        <div class="timeline-item">
+            <div class="time-label">11:30</div>
+            <div class="content-bubble">
+                <div class="content-title">🏖️ 百道海滨公园</div>
+                <p class="content-desc">搭乘巴士前往福冈塔站。在沙滩和 Marizon 欧式建筑前踩点拍照，海风超Chill~</p>
+            </div>
+        </div>
+
+        <!-- 行程3 -->
+        <div class="timeline-item">
+            <div class="time-label">12:30</div>
+            <div class="content-bubble">
+                <div class="content-title">🍱 MARK IS 商场午餐</div>
+                <p class="content-desc">就在福冈塔旁边，定食、海鲜丼选择多，快速解决午餐不拖时间。</p>
+            </div>
+        </div>
+
+        <!-- 行程4 -->
+        <div class="timeline-item">
+            <div class="time-label">14:00</div>
+            <div class="content-bubble">
+                <div class="content-title">🗼 福冈塔观景台</div>
+                <p class="content-desc">登塔俯瞰博多湾全景。门票约 <span class="bells">1,000 铃钱(日元)</span>，停留约1小时。</p>
+            </div>
+        </div>
+
+        <!-- 行程5 -->
+        <div class="timeline-item">
+            <div class="time-label">15:30</div>
+            <div class="content-bubble">
+                <div class="content-title">🌊 海滨自由漫步</div>
+                <p class="content-desc">弹性时间。沿着海边步道散步，注意提前看天气预报的日落时间，提前折返码头。</p>
+            </div>
+        </div>
+
+        <!-- 行程6 -->
+        <div class="timeline-item">
+            <div class="time-label">17:00</div>
+            <div class="content-bubble">
+                <div class="content-title">🚢 那珂川水上巴士</div>
+                <p class="content-desc">前往“福博相遇桥”乘船。<br>✅ 博多湾线(45分/2000日元，看日落首选)<br>✅ 中洲线(30分/1500日元，看河岸夜景)</p>
+            </div>
+        </div>
+
+        <!-- 行程7 -->
+        <div class="timeline-item">
+            <div class="time-label">19:30</div>
+            <div class="content-bubble" style="border-color: #e57373;">
+                <div class="content-title" style="color: #d32f2f;">🥩 烧肉ここから 中洲店</div>
+                <p class="content-desc">下船后步行即达。必须打卡招牌“伝説盛り”厚切拼盘，人均预算约 5,000-7,000 铃钱！</p>
+            </div>
+        </div>
+
+        <!-- 行程8 -->
+        <div class="timeline-item">
+            <div class="time-label">21:00</div>
+            <div class="content-bubble">
+                <div class="content-title">🏮 中洲屋台散步</div>
+                <p class="content-desc">吃完烧肉沿着那珂川散步消食，感受福冈夜生活，随后地铁返回酒店。</p>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- 狸克提示框 -->
+    <div class="highlight-box">
+        <div class="highlight-title">🦝 狸克的特别提示！</div>
+        <p class="content-desc">
+            1. <b>烧肉店</b> 18:00才开门，热门时段容易满座，请务必提前在 Hot Pepper 或电话（092-600-2925）预约 19:30 的位置哦！<br>
+            2. <b>游船班次</b> 傍晚看日落的博多湾线极易售罄，建议提前在线订票！
+        </p>
+    </div>
+
+    <!-- 底部盖章 -->
+    <div class="stamp">
+        <span>✈️ 祝你在福冈玩得开心，不要被蜜蜂蛰到哦！ 🐝</span>
+    </div>
+
+</div>
+
+</body>
+</html>
